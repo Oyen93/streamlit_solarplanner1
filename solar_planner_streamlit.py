@@ -22,6 +22,7 @@ def set_background(image_file):
     st.markdown(
         f"""
         <style>
+        /* 1. Background Utama Aplikasi (Tetap sama) */
         .stApp {{
             background-image: url("data:image/png;base64,{data}");
             background-size: cover;
@@ -29,40 +30,79 @@ def set_background(image_file):
             background-repeat: no-repeat;
             background-attachment: fixed;
         }}
+
+        /* 2. Sidebar: Ubah Putih jadi Hitam Transparan */
         section[data-testid="stSidebar"] {{
-            background-color: rgba(255, 255, 255, 0.85) !important;
+            background-color: rgba(0, 0, 0, 0.75) !important; /* Hitam transparan */
             backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(255,255,255,0.5);
+            border-right: 1px solid rgba(255,255,255,0.1); /* Garis pinggir samar */
         }}
-        section[data-testid="stSidebar"] * {{ text-shadow: none !important; }}
+        
+        /* Paksa semua teks di sidebar jadi Putih */
+        section[data-testid="stSidebar"] * {{
+            color: white !important;
+            text-shadow: none !important;
+        }}
+
+        /* 3. Input Fields (Kotak Isian): Ubah Background Putih jadi Abu Gelap */
         section[data-testid="stSidebar"] div[data-baseweb="input"],
         section[data-testid="stSidebar"] div[data-baseweb="base-input"],
         section[data-testid="stSidebar"] div[data-baseweb="select"] > div {{
-            background-color: #ffffff !important;
-            border: 1px solid #cccccc !important;
-            color: #000000 !important; 
+            background-color: #262730 !important; /* Abu gelap */
+            border: 1px solid #4c4c4c !important; /* Border abu */
+            color: white !important; 
         }}
+        
+        /* Teks di dalam input */
         section[data-testid="stSidebar"] div[data-baseweb="input"] > div {{
-            background-color: #ffffff !important;
-            color: #000000 !important;
+            background-color: transparent !important;
+            color: white !important;
         }}
-        section[data-testid="stSidebar"] .stMarkdown > div > strong {{ color: #333333 !important; }}
+
+        /* 4. Tulisan Bold/Kuat */
+        section[data-testid="stSidebar"] .stMarkdown > div > strong {{
+            color: #f0f0f0 !important; /* Putih terang */
+        }}
+
+        /* 5. Tombol (Buttons) */
         section[data-testid="stSidebar"] button {{
-             background-color: #ffffff !important;
-             color: #000000 !important;
-             border-color: #cccccc !important;
+             background-color: #262730 !important;
+             color: white !important;
+             border-color: #4c4c4c !important;
         }}
-        section[data-testid="stSidebar"] svg {{ fill: #000000 !important; stroke: #000000 !important; }}
-        div[data-baseweb="popover"] {{ background-color: #ffffff !important; border: 1px solid #ccc !important; }}
-        ul[data-baseweb="menu"] {{ background-color: #ffffff !important; color: #000000 !important; }}
-        li[role="option"] {{ color: #000000 !important; background-color: #ffffff !important; }}
-        li[role="option"]:hover, li[role="option"][aria-selected="true"] {{ background-color: #f0f0f0 !important; color: #000000 !important; }}
+
+        /* 6. Ikon (SVG) */
+        section[data-testid="stSidebar"] svg {{
+            fill: white !important;
+            stroke: white !important;
+        }}
+
+        /* 7. Dropdown Menu (Pilihan yang muncul saat diklik) */
+        div[data-baseweb="popover"],
+        div[data-baseweb="popover"] > div,
+        ul[data-baseweb="menu"] {{
+            background-color: #262730 !important;
+            border: 1px solid #4c4c4c !important;
+        }}
+
+        /* Pilihan di dalam dropdown */
+        li[role="option"] {{
+            color: white !important;
+            background-color: #262730 !important;
+        }}
+
+        /* Saat mouse diarahkan ke pilihan (Hover) */
+        li[role="option"]:hover, li[role="option"][aria-selected="true"] {{
+            background-color: #ff4b4b !important; /* Merah Streamlit atau warna lain */
+            color: white !important;
+        }}
+
+        /* Header transparan */
         header {{ background: transparent !important; }}
         </style>
         """,
         unsafe_allow_html=True
     )
-
 # --- LOAD GAMBAR ---
 nama_file_gambar = "energi_terbarukan.jpg" 
 
