@@ -1,4 +1,6 @@
 ﻿streamlit
-mathplolib
+matplotlib
 numpy
+
+
 
